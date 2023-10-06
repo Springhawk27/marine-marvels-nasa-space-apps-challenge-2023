@@ -1,118 +1,188 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import RootLayout from "@/components/Layouts/RootLayout";
+import Banner from "@/components/UI/carousel";
+import Team from "@/components/UI/team";
+import { Button, Col, Grid, Row } from "antd";
 
-const inter = Inter({ subsets: ['latin'] })
+const HomePage = () => {
+  const { useBreakpoint } = Grid;
+  const screens = useBreakpoint();
 
-export default function Home() {
+  const menuGradientBackground = `
+    linear-gradient(
+      to bottom,
+      rgb(1,116,152) 0%,
+      rgb(2,6,65) 100%
+    )
+  `;
+
+  const backgroundImageStyle = {
+    backgroundImage: `url('/images/home_article.png')`,
+    // backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundColor: "#023667",
+    // height: "100vh",
+    // minHeight: "60vh",
+  };
+  const backgroundImageForVideo = {
+    backgroundImage: `url('/images/video_section.png')`,
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "center",
+    backgroundColor: "#023667",
+    height: "100vh",
+    // minHeight: "60vh",
+  };
+
+  const data = {
+    features: [
+      {
+        id: 1,
+        image_url: "/images/features/card1.png",
+        title: "Interactive 3D Visualizations",
+      },
+      {
+        id: 2,
+        image_url: "/images/features/card2.png",
+        title: "Real-time Data",
+      },
+      {
+        id: 3,
+        image_url: "/images/features/card3.png",
+        title: "User-friendly Design",
+      },
+      {
+        id: 4,
+        image_url: "/images/features/card4.png",
+        title: "Game Element",
+      },
+      {
+        id: 5,
+        image_url: "/images/features/card5.png",
+        title: "Education",
+      },
+      {
+        id: 6,
+        image_url: "/images/features/card6.png",
+        title: "Credibility",
+      },
+      {
+        id: 7,
+        image_url: "/images/features/card7.png",
+        title: "NASA Resources",
+      },
+      {
+        id: 8,
+        image_url: "/images/features/card8.png",
+        title: "Ease of Use",
+      },
+    ],
+  };
+
+  const features = data.features;
+
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`bg-scroll  text-2xl pt-16 md:px-12 px-6 `}
+      style={{
+        background: menuGradientBackground,
+        backgroundImage: `url('/images/home_background.png')`,
+        // backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        // backgroundColor: "#023058",
+        // height: "100vh",
+        minHeight: "100%",
+        zIndex: -1,
+      }}
     >
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <Banner></Banner>
+
+      <div className="md:h-screen bg-cover" style={backgroundImageStyle}>
+        <Row className="flex flex-col md:flex-row">
+          <Col
+            className="md:h-screen  text-white p-4 flex justify-center items-center flex-col pb-16 gap-4"
+            span={8}
+            xs={24}
+            sm={8}
+            md={8}
+            lg={8}
+            xl={8}
+            style={{
+              backgroundColor: "#014759",
+              minHeight: "60vh",
+              // height: "100vh",
+            }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <h1 className="text-3xl">Dive into the Ocean&apos;s Garden</h1>
+            <p className="text-sm">
+              Explore the Ocean&apos;s Garden, a 3D interactive platform, and
+              discover how marine photosynthesis, phytoplankton, and ocean
+              ecosystems sustain our planet. Our mission is to simplify complex
+              science, making the ocean&apos;s significance accessible to all,
+              while fostering a deeper appreciation for its profound impact on
+              our world.
+            </p>
+          </Col>
+          <Col span={16}></Col>
+        </Row>
+      </div>
+
+      {/* video section */}
+      <div className="pt-8 pb-12">
+        <div
+          className="flex flex-col gap-4 justify-center items-center p-4"
+          style={backgroundImageForVideo}
+        >
+          <iframe
+            className="h-2/4 lg:w-2/4 md:w-3/4 w-full"
+            src="https://www.youtube.com/embed/L761OoyW7qg?si=4Doq-nBx23cjraNh"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+          <iframe
+            className="h-2/4 lg:w-2/4 md:w-3/4 w-full"
+            src="https://www.youtube.com/embed/qQX0CyizqF8?si=M_ukzPD7hGJCoEGs"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>{" "}
         </div>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  xl:grid-cols-4 2xl:grid-cols-5 gap-8 px-8 py-16">
+        {features?.map((feature) => (
+          <div
+            key={feature?.id}
+            className="card rounded-lg w-full  "
+            style={{ backgroundColor: " #022843" }}
+          >
+            <figure>
+              <img
+                src={`${feature.image_url}`}
+                alt="image"
+                className="bg-cover  w-full  max-h-44"
+              />
+            </figure>
+            <div className="card-body ">
+              <h2 className="card-title py-2 text-white text-center text-base">
+                {feature?.title}
+              </h2>
+            </div>
+          </div>
+        ))}
       </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div>
+        <Team></Team>
       </div>
     </main>
-  )
-}
+  );
+};
+
+export default HomePage;
+
+HomePage.getLayout = function getLayout(page) {
+  return <RootLayout>{page}</RootLayout>;
+};
