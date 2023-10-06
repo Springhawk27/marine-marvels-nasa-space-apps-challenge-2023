@@ -13,6 +13,8 @@ export default function LiveObservation({ nasaData }) {
     )
   `;
 
+  const [selectedCard, setSelectedCard] = useState(null);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -60,7 +62,14 @@ export default function LiveObservation({ nasaData }) {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2  gap-8 px-8 py-16">
+      {/* live observation */}
+      <div className="relative isolate px-6  lg:px-8">
+        <div className="mx-auto max-w-2xl py-14 sm:py-18 lg:py-24">
+          <img src="" alt="live observation" />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8 px-8 py-16">
         {nasaData &&
           nasaData.collection.items.map((item, index) => (
             <div

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export default function ArticleDetail({ article }) {
   console.log(article);
   return (
@@ -15,18 +13,33 @@ export default function ArticleDetail({ article }) {
         minHeight: "100vh",
       }}
     >
-      <div
-        className="card lg:card-side bg-base-100 shadow-xl py-16 text-white w-2/4 "
-        style={{ backgroundColor: " #022843" }}
-      >
-        <figure>
-          <img src={article.image_url} className="bg-cover  w-full" />
-        </figure>
-        <div className="card-body py-4 px-4">
-          <h2 className="card-title py-2">{article.title}</h2>
-          <p>{article.description}</p>
+      <section className="text-gray-600 body-font py-16">
+        <div className="container mx-auto flex px-5 py-8 md:flex-row flex-col items-center">
+          <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+            <h2
+              className="card-title py-2 text-4xl"
+              style={{
+                color: " #BAE3C3",
+              }}
+            >
+              {article.title}
+            </h2>
+            <p className=" text-xl text-white">{article.description}</p>
+          </div>
+          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col">
+            {/* <img src={article.image_url} className="bg-cover  w-full" /> */}
+            <iframe
+              width="100%"
+              height="340"
+              src={article.video_url}
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

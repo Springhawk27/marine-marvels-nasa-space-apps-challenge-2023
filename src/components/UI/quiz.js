@@ -101,20 +101,29 @@ function Quiz() {
   };
 
   return (
-    <div className="py-16 px-8 text-center">
-      <h1 className="text-3xl font-semibold mb-4">Phytoplankton Quiz</h1>
+    <div className="py-16 px-8 text-start text-white">
+      <h1 className="text-3xl font-semibold pt-8 "> Quiz - Phytoplankton</h1>
       {currentQuestion < quizData.length && (
         <div>
-          <h2 className="text-xl font-medium mb-2">
-            Question {currentQuestion + 1}
-          </h2>
-          <p className="text-lg mb-4">{quizData[currentQuestion].question}</p>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="pb-4">
+            <span className="text-xl font-medium mb-2">
+              Q{currentQuestion + 1}{" "}
+            </span>
+            <span className="text-lg mb-4">
+              {quizData[currentQuestion].question}
+            </span>
+          </div>
+          <ul
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-8 list-none rounded"
+            style={{
+              backgroundColor: "#8FC0D0",
+            }}
+          >
             {quizData[currentQuestion].options.map((option, index) => (
               <li
                 key={index}
                 onClick={() => handleAnswerClick(option)}
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded cursor-pointer"
+                className="bg-sky-900	 hover:bg-sky-600 text-white py-4 px-4 rounded cursor-pointer"
               >
                 {option}
               </li>
