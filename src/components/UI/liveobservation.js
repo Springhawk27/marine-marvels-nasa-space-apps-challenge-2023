@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function LiveObservation({ nasaData }) {
-  //   console.log("from ui", nasaData);
+  console.log("from ui", nasaData);
   const liveObservationGradientBackground = `
     linear-gradient(
       to bottom,
@@ -13,7 +13,12 @@ export default function LiveObservation({ nasaData }) {
     )
   `;
 
-  const [selectedCard, setSelectedCard] = useState(null);
+  //   const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(
+    nasaData?.collection.items[0] || null
+  );
+
+  console.log(selectedCard);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -64,8 +69,24 @@ export default function LiveObservation({ nasaData }) {
       </div>
       {/* live observation */}
       <div className="relative isolate px-6  lg:px-8">
-        <div className="mx-auto max-w-2xl py-14 sm:py-18 lg:py-24">
-          <img src="" alt="live observation" />
+        <div
+          className="mx-auto max-w-2xl "
+          style={{
+            backgroundColor: "#02487F",
+          }}
+        >
+          {selectedCard && (
+            <img
+              className="bg-cover  w-full"
+              src={selectedCard?.links[0]?.href}
+              alt={selectedCard.data[0].title}
+            />
+          )}
+          {selectedCard && (
+            <h2 className="card-title py-2 px-4 text-white text-left text-sm">
+              {selectedCard?.data[0]?.description_508}
+            </h2>
+          )}
         </div>
       </div>
 
@@ -74,8 +95,12 @@ export default function LiveObservation({ nasaData }) {
           nasaData.collection.items.map((item, index) => (
             <div
               key={index}
-              className="card rounded-lg w-full  "
+              //   className="card rounded-lg w-full  "
+              className={`card rounded-lg w-full ${
+                selectedCard === item ? "selected-card" : ""
+              }`}
               style={{ backgroundColor: " #022843" }}
+              onClick={() => setSelectedCard(item)}
             >
               <figure>
                 {item.data[0].media_type === "image" && (
@@ -88,7 +113,7 @@ export default function LiveObservation({ nasaData }) {
               </figure>
               <div className="card-body ">
                 <h2 className="card-title py-2 px-4 text-gray-400 text-left text-sm">
-                  {item.data[0].description.slice(0, 150)}
+                  {item.data[0].title}
                   {"..."}
                 </h2>{" "}
               </div>
