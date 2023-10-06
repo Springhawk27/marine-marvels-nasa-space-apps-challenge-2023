@@ -8,6 +8,7 @@ const LearnListPage = () => {
       {
         id: 1,
         image_url: "/images/articles/image1.png",
+        background_image: "/images/articles/background/learn_card_1.jpg",
         video_url:
           "https://www.youtube.com/embed/cXmUvaGp4eI?si=oeMuH9enGHmmBB7g",
         title: "Ocean Ecosystem",
@@ -17,7 +18,7 @@ const LearnListPage = () => {
       {
         id: 2,
         image_url: "/images/articles/image2.png",
-
+        background_image: "/images/articles/background/learn_card_2.jpg",
         video_url:
           "https://www.youtube.com/embed/Wt58h0hGwWY?si=m8qCTEd1fclqp7an",
         title: "Marine Life",
@@ -27,6 +28,7 @@ const LearnListPage = () => {
       {
         id: 3,
         image_url: "/images/articles/image3.png",
+        background_image: "/images/articles/background/learn_card_3.jpg",
         video_url:
           "https://www.youtube.com/embed/wYLBDVyVIqI?si=cCQroiwA232JrHvm",
         title: "Climate change & Ocean Health",
@@ -36,6 +38,7 @@ const LearnListPage = () => {
       {
         id: 4,
         image_url: "/images/articles/image4.png",
+        background_image: "/images/articles/background/learn_card_4.jpg",
         video_url:
           "https://www.youtube.com/embed/RbVRwlNutCo?si=ofiV9Rkr3-hoLUwV",
         title: "The Carbon Cycle in the ocean",
@@ -45,6 +48,7 @@ const LearnListPage = () => {
       {
         id: 5,
         image_url: "/images/articles/image5.png",
+        background_image: "/images/articles/background/learn_card_5.jpg",
         video_url:
           "https://www.youtube.com/embed/UjnYJVKysfo?si=zGnvoR-kOxMym2-1",
         title: "Phytoplankton & Global Oxygen Production",
@@ -54,6 +58,8 @@ const LearnListPage = () => {
       {
         id: 6,
         image_url: "/images/articles/image6.png",
+        background_image: "/images/articles/background/learn_card_6.jpg",
+
         video_url:
           "https://www.youtube.com/embed/bNNdr_oSvuI?si=yzIF4bG5wUDrV2BW",
         title: "Ocean Energy & Resources",
@@ -63,6 +69,7 @@ const LearnListPage = () => {
       {
         id: 7,
         image_url: "/images/articles/image7.png",
+        background_image: "/images/articles/background/learn_card_7.jpg",
         video_url:
           "https://www.youtube.com/embed/0IimdXk-lEU?si=lzaRr3EZOZ2K7fkq",
         title: "Ocean as Food Source",
@@ -72,6 +79,7 @@ const LearnListPage = () => {
       {
         id: 8,
         image_url: "/images/articles/image8.png",
+        background_image: "/images/articles/background/learn_card_8.jpg",
         video_url:
           "https://www.youtube.com/embed/73mXXJpEjRI?si=LBGU_M2HfGO2JS-m",
 
@@ -82,6 +90,7 @@ const LearnListPage = () => {
       {
         id: 9,
         image_url: "/images/articles/image9.png",
+        background_image: "/images/articles/background/learn_card_9.jpg",
 
         video_url:
           "https://www.youtube.com/embed/DGOjXZweryQ?si=GHe7XeQmXayli5f9",
@@ -92,6 +101,7 @@ const LearnListPage = () => {
       {
         id: 10,
         image_url: "/images/articles/image10.png",
+        background_image: "/images/articles/background/learn_card_10.jpg",
         video_url:
           "https://www.youtube.com/embed/fK6aeyEQMGk?si=ZRDuml2nU2lf3_CP",
         title: "Maritime Transportation",
@@ -101,6 +111,8 @@ const LearnListPage = () => {
       {
         id: 11,
         image_url: "/images/articles/image11.png",
+        background_image: "/images/articles/background/learn_card_11.jpg",
+
         video_url:
           "https://www.youtube.com/embed/pCJFtcob1pI?si=bD8s4P2DxwVKna5M",
         title: "Ocean policy",
@@ -110,6 +122,7 @@ const LearnListPage = () => {
       {
         id: 12,
         image_url: "/images/articles/image12.png",
+        background_image: "/images/articles/background/learn_card_12.jpg",
         video_url:
           "https://www.youtube.com/embed/JB1kYcJLr6o?si=XmxB26sF6O--CPor",
         title: "Ocean exploration & Scientific research",

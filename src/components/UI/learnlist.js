@@ -47,6 +47,7 @@ export default function LearnList({ allArticles }) {
                 title: article.title,
                 description: article.description,
                 image_url: article.image_url,
+                background_image: article.background_image,
                 video_url: article.video_url,
               },
             }}
