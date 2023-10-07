@@ -77,14 +77,18 @@ export default function LiveObservation({ nasaData }) {
         >
           {selectedCard && (
             <img
-              className="bg-cover  w-full"
+              className="bg-cover  w-full "
               src={selectedCard?.links[0]?.href}
               alt={selectedCard.data[0].title}
             />
           )}
           {selectedCard && (
-            <h2 className="card-title py-2 px-4 text-white text-left text-sm">
-              {selectedCard?.data[0]?.description_508}
+            <h2 className="card-title py-2 px-4 text-white text-left text-sm ">
+              {/* {selectedCard?.data[0]?.description_508} */}
+              {selectedCard?.data[0].description_508 ||
+                (selectedCard?.data[0].description.includes("---")
+                  ? selectedCard?.data[0].description.split("---")[1]
+                  : selectedCard?.data[0].description)}
             </h2>
           )}
         </div>

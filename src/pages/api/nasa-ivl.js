@@ -5,7 +5,7 @@ import axios from "axios";
 export default async (req, res) => {
   try {
     const response = await axios.get(
-      "https://images-api.nasa.gov/search?q=sea&media_type=image&year_start=2023"
+      "https://images-api.nasa.gov/search?q=ocean&media_type=image"
     );
 
     const data = response.data;
