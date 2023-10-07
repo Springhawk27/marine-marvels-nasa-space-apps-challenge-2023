@@ -95,19 +95,28 @@ export default function LiveObservation({ nasaData }) {
           nasaData.collection.items.map((item, index) => (
             <div
               key={index}
-              //   className="card rounded-lg w-full  "
-              className={`card rounded-lg w-full ${
-                selectedCard === item ? "selected-card" : ""
-              }`}
-              style={{ backgroundColor: " #022843" }}
+              className={`card rounded-lg w-full  relative
+              `}
+              style={{
+                backgroundColor: " #022843",
+              }}
               onClick={() => setSelectedCard(item)}
             >
+              {selectedCard === item && (
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-white text-black bg-opacity-50 rounded-lg"
+                  style={{ zIndex: 50 }}
+                >
+                  Selected
+                </div>
+              )}
+
               <figure>
                 {item.data[0].media_type === "image" && (
                   <img
                     src={item.links[0].href}
                     alt={item.data[0].title}
-                    className="bg-cover  w-full"
+                    className="bg-cover  w-full "
                   />
                 )}
               </figure>
