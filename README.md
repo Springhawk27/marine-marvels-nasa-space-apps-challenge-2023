@@ -114,3 +114,4 @@ https://oceanservice.noaa.gov/facts/
 ![9](https://github.com/MushfiqurRashid/for_practice/assets/68941755/a9501555-0f14-4ad5-ac21-0c462b74f692)
 ![10](https://github.com/MushfiqurRashid/for_practice/assets/68941755/1166e47c-bc17-49a3-9e0b-8483e6aa62c9)
 ![11 1](https://github.com/MushfiqurRashid/for_practice/assets/68941755/b88da8aa-574a-4b75-b04f-0f250cb2ccfd)
+![quiz](assets/quiz.png)
