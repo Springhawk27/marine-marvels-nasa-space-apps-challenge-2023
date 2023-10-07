@@ -136,7 +136,7 @@ const HomePage = () => {
         >
           <iframe
             className="h-2/4 lg:w-2/4 md:w-3/4 w-full"
-            src="https://www.youtube.com/embed/L761OoyW7qg?si=4Doq-nBx23cjraNh"
+            src="https://www.youtube.com/embed/cXmUvaGp4eI?si=uHoS3I0apA3NDBR8"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -144,7 +144,7 @@ const HomePage = () => {
           ></iframe>
           <iframe
             className="h-2/4 lg:w-2/4 md:w-3/4 w-full"
-            src="https://www.youtube.com/embed/qQX0CyizqF8?si=M_ukzPD7hGJCoEGs"
+            src="https://www.youtube.com/embed/wYLBDVyVIqI?si=9CV822uNLitYq8eF"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
