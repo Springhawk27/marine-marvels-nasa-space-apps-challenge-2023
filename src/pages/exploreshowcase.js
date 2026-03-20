@@ -1,13 +1,8 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ExploreShowcase from "@/components/UI/exploreshowcase";
-import React from "react";
 
 const ExploreShowcasePage = () => {
-  return (
-    <div>
-      <ExploreShowcase></ExploreShowcase>
-    </div>
-  );
+  return <ExploreShowcase />;
 };
 
 export default ExploreShowcasePage;

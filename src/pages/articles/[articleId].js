@@ -1,18 +1,14 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import ArticleDetail from "@/components/UI/articledetail";
 import { useRouter } from "next/router";
-import React from "react";
+import articles from "@/data/articles";
 
 const ArticleDetailPage = () => {
   const router = useRouter();
-  //   console.log(router.query);
-  const article = router.query;
+  const { articleId } = router.query;
+  const article = articles.find((a) => a.id === Number(articleId));
 
-  return (
-    <div>
-      <ArticleDetail article={article}></ArticleDetail>
-    </div>
-  );
+  return <ArticleDetail article={article} />;
 };
 
 export default ArticleDetailPage;

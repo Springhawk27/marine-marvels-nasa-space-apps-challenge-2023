@@ -1,279 +1,265 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Head from "next/head";
+
+const zones = [
+  {
+    name: "Euphotic Zone",
+    depth: "Sea Level - 200m",
+    color: "#4ECDC4",
+    description:
+      "The sunlit zone where photosynthesis thrives. Home to phytoplankton that produce over 50% of Earth's oxygen, colorful coral reefs, and the majority of ocean life. Sunlight floods this zone, fueling a rich ecosystem.",
+    creatures: [
+      {
+        src: "/images/explore/phytoplankton.png",
+        alt: "Phytoplankton",
+        name: "Phytoplankton",
+        fact: "Produce 50% of Earth's oxygen",
+      },
+      {
+        src: "/images/explore/jelly_fish.png",
+        alt: "Jellyfish",
+        name: "Jellyfish",
+        fact: "Existed for over 500 million years",
+      },
+    ],
+    gradient: "from-ocean-600/20 to-ocean-700/40",
+  },
+  {
+    name: "Dysphotic Zone",
+    depth: "200m - 1,000m",
+    color: "#6C5CE7",
+    description:
+      "The twilight zone where sunlight fades rapidly. Characterized by dim, residual light where photosynthesis cannot occur. Home to unique, adapted organisms including bioluminescent species that create their own light in the darkness.",
+    creatures: [
+      {
+        src: "/images/explore/shrimp.png",
+        alt: "Deep Sea Shrimp",
+        name: "Deep Sea Shrimp",
+        fact: "Some species glow in the dark",
+      },
+      {
+        src: "/images/explore/sword_fish.png",
+        alt: "Swordfish",
+        name: "Swordfish",
+        fact: "Can swim up to 97 km/h",
+      },
+    ],
+    gradient: "from-deep-600/20 to-deep-800/40",
+  },
+  {
+    name: "Aphotic Zone",
+    depth: "1,000m+",
+    color: "#FD79A8",
+    description:
+      "The midnight zone, far below the reach of sunlight. A world of complete darkness where organisms rely on bioluminescence and chemosynthesis. Crushing pressures and near-freezing temperatures create one of Earth's most extreme environments.",
+    creatures: [
+      {
+        src: "/images/explore/angler_fish.png",
+        alt: "Angler Fish",
+        name: "Angler Fish",
+        fact: "Uses a bioluminescent lure to attract prey",
+      },
+      {
+        src: "/images/explore/octopus.png",
+        alt: "Deep Sea Octopus",
+        name: "Deep Sea Octopus",
+        fact: "Has three hearts and blue blood",
+      },
+    ],
+    gradient: "from-deep-800/20 to-deep-950/40",
+  },
+];
 
 export default function ExploreShowcase() {
-  const exploreGradientBackground = `
-    linear-gradient(
-      to bottom,
-      rgb(9,86,147) 0%,
-      rgb(2,52,108) 50%,
-      rgb(2,6,65) 100%
-    )
-  `;
   return (
-    <div
-      className="bg-local relative"
-      style={{
-        background: exploreGradientBackground,
-        // backgroundImage: `url('/images/explore_showcase.png')`,
-        backgroundSize: "100% 100%",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundColor: "#023667",
-        minHeight: "100vh",
-      }}
-    >
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-4xl py-14 sm:py-18 lg:py-24">
-          <div className="text-left">
-            <h1 className="flex flex-col text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              <span
+    <>
+      <Head>
+        <title>Explore the Ocean | Marine Marvels</title>
+        <meta
+          name="description"
+          content="Dive deep into the ocean's three main zones and discover the incredible marine life that calls each layer home."
+        />
+      </Head>
+
+      <div className="min-h-screen bg-gradient-deep">
+        {/* Hero */}
+        <section className="relative pt-28 pb-20 px-4 md:px-12 overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="bubble-particle animate-bubble"
                 style={{
-                  color: "#BAE0E3",
+                  left: `${10 + i * 12}%`,
+                  animationDelay: `${i * 0.8}s`,
+                  animationDuration: `${3 + i * 0.6}s`,
+                  width: `${3 + i * 1.5}px`,
+                  height: `${3 + i * 1.5}px`,
+                  bottom: 0,
                 }}
-              >
-                Explore
+              />
+            ))}
+          </div>
+
+          <div className="max-w-4xl mx-auto relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-ocean-primary text-sm font-semibold uppercase tracking-widest">
+                Interactive Journey
               </span>
-              <span className="text-white"> the Ocean</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-white sm:w-2/4 w-3/4">
-              An interactive 3D Visual where you can explore various ocean
-              ecosystems, marine life, and understand the interconnectedness of
-              marine services
-            </p>
+              <h1 className="text-5xl md:text-7xl font-display font-bold mt-3 mb-6">
+                <span className="gradient-text">Explore</span>
+                <br />
+                <span className="text-white">the Ocean</span>
+              </h1>
+              <p className="text-white/60 text-lg md:text-xl max-w-xl leading-relaxed">
+                Dive through three ocean zones and discover the incredible
+                marine life that calls each layer home. Hover over creatures to
+                interact with them.
+              </p>
+            </motion.div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      <section className="text-gray-600 body-font">
-        <div className="  py-4 mx-auto">
-          <div className="flex flex-col text-start sm:w-1/6 w-2/6 mb-4">
-            <h2
-              className="text-xs text-white tracking-widest font-medium title-font mb-1 bg-sky-700 py-2 rounded-r-lg text-end px-2"
-              style={{
-                color: " #F5FCCD",
-              }}
+        {/* Ocean Zones */}
+        {zones.map((zone, zoneIndex) => (
+          <section key={zone.name} className="relative">
+            {/* Depth Label */}
+            <div
+              className={`flex ${zoneIndex % 2 === 0 ? "justify-start" : "justify-end"} px-4 md:px-12 py-4`}
             >
-              Sea Level
-            </h2>
-          </div>
-        </div>
-      </section>
-      {/* Euphotic Zone */}
-      <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-8 md:flex-row flex-col items-center">
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col">
-            <motion.img
-              src="/images/explore/phytoplankton.png"
-              alt="phytoplankton"
-              className="w-1/4"
-              whileHover={{ scale: 1.2, rotate: 90 }}
-              whileTap={{
-                scale: 0.8,
-                rotate: -90,
-                borderRadius: "100%",
-              }}
-            />
-
-            <div className="w-full text-end">
-              <motion.img
-                src="/images/explore/jelly_fish.png"
-                alt="jelly_fish"
-                className="w-full text-end"
-                whileHover={{ scale: 1.2, rotate: -45 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: -90,
-                  borderRadius: "100%",
-                }}
-              />
-            </div>
-          </div>
-          <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1
-              className="title-font sm:text-4xl text-3xl mb-2 font-medium "
-              style={{
-                color: "#FEB6C9",
-              }}
-            >
-              Euphotic Zone
-            </h1>
-            <p className="mb-4 leading-relaxed text-white">
-              Sunlight rarely penetrates beyond this zone
-            </p>
-            <p className="mb-8 leading-relaxed text-gray-400 text-xs">
-              Copper mug try-hard pitchfork pour-over freegan heirloom neutra
-              air plant cold-pressed tacos poke beard tote bag. Heirloom echo
-              park mlkshk tote bag selvage hot chicken authentic tumeric
-              truffaut hexagon try-hard chambray.
-            </p>
-          </div>
-        </div>
-      </section>
-      <section className="text-gray-600 body-font pb-20 flex flex-row-reverse w-full">
-        <div className="  py-4 w-full">
-          <div className="flex flex-col justify-start items-end   mb-4">
-            <h2
-              className="text-xs text-white tracking-widest font-medium title-font mb-1 bg-sky-700 py-2 rounded-l-lg text-start px-2  sm:w-1/6 w-2/6"
-              style={{
-                color: " #F5FCCD",
-              }}
-            >
-              200 Metre
-            </h2>
-          </div>
-        </div>
-      </section>
-      {/* Dysphotic Zone */}
-      <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-8 md:flex-row flex-col items-center">
-          <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1
-              className="title-font sm:text-4xl text-3xl mb-2 font-medium "
-              style={{
-                color: "#FEB6C9",
-              }}
-            >
-              Dysphotic Zone{" "}
-            </h1>
-            <p className="mb-4 leading-relaxed text-white">
-              Sunlight decreases rapidly with depth{" "}
-            </p>
-            <p className="mb-8 leading-relaxed text-gray-400 text-xs">
-              It is characterized by dim, residual light where photosynthesis is
-              not possible, but it supports unique and adapted organisms,
-              including some bioluminescent species
-            </p>
-          </div>
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col">
-            <motion.img
-              src="/images/explore/shrimp.png"
-              alt="phytoplankton"
-              className="w-2/4"
-              whileHover={{ scale: 1.2, rotate: -45 }}
-              whileTap={{
-                scale: 0.8,
-                rotate: -90,
-                borderRadius: "100%",
-              }}
-            />
-
-            <div className="w-full text-end">
-              <motion.img
-                src="/images/explore/sword_fish.png"
-                alt="jelly_fish"
-                className="w-2/4 text-start"
-                whileHover={{ scale: 0.8, rotate: 30 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: 0,
-                  borderRadius: "100%",
-                }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="text-gray-600 body-font">
-        <div className="  py-4 mx-auto">
-          <div className="flex flex-col text-start  sm:w-1/6 w-2/6 mb-4">
-            <h2
-              className="text-xs text-white tracking-widest font-medium title-font mb-1 bg-sky-700 py-2 rounded-r-lg text-end px-2"
-              style={{
-                color: " #F5FCCD",
-              }}
-            >
-              1000 Metre
-            </h2>
-          </div>
-        </div>
-      </section>
-
-      {/* Euphotic Zone */}
-      <section className="text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-8 md:flex-row flex-col items-center">
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0 flex flex-col">
-            <motion.img
-              src="/images/explore/angler_fish.png"
-              alt="phytoplankton"
-              className="w-2/4"
-              whileHover={{ scale: 1.2, rotate: -45 }}
-              whileTap={{
-                scale: 0.8,
-                rotate: -90,
-                borderRadius: "100%",
-              }}
-            />
-
-            <div className="w-full text-end">
-              <motion.img
-                src="/images/explore/octopus.png"
-                alt="jelly_fish"
-                className="w-2/4 text-end"
-                whileHover={{ scale: 1.2, rotate: 45 }}
-                whileTap={{
-                  scale: 0.8,
-                  rotate: -90,
-                  borderRadius: "100%",
-                }}
-              />
-            </div>
-          </div>
-          <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
-            <h1
-              className="title-font sm:text-4xl text-3xl mb-2 font-medium "
-              style={{
-                color: "#FEB6C9",
-              }}
-            >
-              Aphotic Zone{" "}
-            </h1>
-            <p className="mb-4 leading-relaxed text-white">
-              Sunlight does not penetrate{" "}
-            </p>
-            <p className="mb-8 leading-relaxed text-gray-400 text-xs">
-              It is far below the reach of sunlight. It is a deep layer where
-              photosynthesis cannot occur, and organisms in this zone often rely
-              on alternative sources of energy
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div className="mx-auto max-w-4xl py-14 sm:py-18 lg:py-24">
-          <div className="text-left">
-            <h1 className="flex flex-col text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-              <span
-                style={{
-                  color: "#BAE0E3",
-                }}
+              <motion.div
+                initial={{ opacity: 0, x: zoneIndex % 2 === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="depth-label"
               >
-                Explore
-              </span>
-              <span className="text-white"> more Ocean Life</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-white sm:w-2/4 w-3/4">
-              Don&apos;t stop at sea turtles—there&apos;s a whole ocean full of
-              amazing creatures waiting to be discovered! From the colorful
-              coral reefs to the mysterious depths, each layer of the ocean has
-              its own set of residents.
+                <span
+                  className="w-2 h-2 rounded-full mr-3"
+                  style={{ backgroundColor: zone.color }}
+                />
+                {zone.depth}
+              </motion.div>
+            </div>
+
+            {/* Zone Content */}
+            <div
+              className={`container mx-auto px-4 md:px-12 py-12 flex flex-col ${
+                zoneIndex % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              } items-center gap-12`}
+            >
+              {/* Creatures */}
+              <motion.div
+                initial={{ opacity: 0, x: zoneIndex % 2 === 0 ? -40 : 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+                className="w-full md:w-1/2 flex flex-col gap-6"
+              >
+                {zone.creatures.map((creature, i) => (
+                  <div
+                    key={creature.alt}
+                    className={`group relative ${i === 1 ? "self-end" : "self-start"}`}
+                  >
+                    <motion.img
+                      src={creature.src}
+                      alt={creature.alt}
+                      className={`${i === 0 ? "w-1/3 md:w-2/5" : "w-2/3 md:w-3/4"} cursor-pointer drop-shadow-2xl`}
+                      whileHover={{
+                        scale: 1.15,
+                        rotate: i === 0 ? 10 : -10,
+                        transition: { type: "spring", stiffness: 300 },
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{
+                        y: {
+                          duration: 3 + i,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        },
+                      }}
+                    />
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                      <div className="glass px-4 py-3 rounded-xl text-center whitespace-nowrap">
+                        <p className="text-white font-semibold text-sm">
+                          {creature.name}
+                        </p>
+                        <p className="text-white/60 text-xs mt-1">
+                          {creature.fact}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* Zone Info */}
+              <motion.div
+                initial={{ opacity: 0, x: zoneIndex % 2 === 0 ? 40 : -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="w-full md:w-1/2"
+              >
+                <h2
+                  className="text-3xl md:text-4xl font-display font-bold mb-3"
+                  style={{ color: zone.color }}
+                >
+                  {zone.name}
+                </h2>
+                <div
+                  className="w-16 h-1 rounded-full mb-6"
+                  style={{ backgroundColor: zone.color, opacity: 0.5 }}
+                />
+                <p className="text-white/70 text-base leading-relaxed">
+                  {zone.description}
+                </p>
+              </motion.div>
+            </div>
+          </section>
+        ))}
+
+        {/* CTA */}
+        <section className="py-20 px-4 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto text-center"
+          >
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
+              <span className="gradient-text">Explore</span>
+              <span className="text-white"> More Ocean Life</span>
+            </h2>
+            <p className="text-white/60 text-lg max-w-xl mx-auto mb-8 leading-relaxed">
+              Don&apos;t stop here &mdash; there&apos;s a whole ocean full of
+              amazing creatures waiting to be discovered! Dive deeper into our
+              educational articles.
             </p>
-            <div className="mt-4 flex items-center justify-start gap-x-6">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Link
-                href="/learnlist"
-                className="rounded-md  px-6 py-2.5 text-lg font-bold text-black shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                style={{
-                  backgroundColor: "#F5FCCD",
-                }}
+                href="/learn"
+                className="ocean-btn ocean-btn-secondary no-underline"
               >
-                Learn more
+                Read Articles
+              </Link>
+              <Link
+                href="/quiz"
+                className="ocean-btn ocean-btn-outline no-underline"
+              >
+                Take the Quiz
               </Link>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </section>
       </div>
-    </div>
+    </>
   );
 }

@@ -1,11 +1,11 @@
 import RootLayout from "@/components/Layouts/RootLayout";
 import LiveObservation from "@/components/UI/liveobservation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const LiveObservationPage = ({ allImages }) => {
-  //   console.log("from ui server", allImages);
+const LiveObservationPage = () => {
   const [nasaData, setNasaData] = useState(null);
-  console.log(nasaData);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -13,22 +13,17 @@ const LiveObservationPage = ({ allImages }) => {
         if (response.ok) {
           const data = await response.json();
           setNasaData(data);
-        } else {
-          console.error("Failed to fetch data from NASA IVL API");
         }
       } catch (error) {
-        console.error("An error occurred while fetching data:", error);
+        console.error("Failed to fetch NASA data:", error);
+      } finally {
+        setIsLoading(false);
       }
     }
-
     fetchData();
   }, []);
 
-  return (
-    <div>
-      <LiveObservation nasaData={nasaData}></LiveObservation>
-    </div>
-  );
+  return <LiveObservation nasaData={nasaData} isLoading={isLoading} />;
 };
 
 export default LiveObservationPage;

@@ -1,106 +1,54 @@
 import React from "react";
+import { motion } from "framer-motion";
+import teamData from "@/data/team";
 
 const Team = () => {
   return (
-    <div>
-      <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-20">
-            <h1 className="text-3xl md:text-5xl font-medium title-font mb-4 text-white">
-              OUR TEAM
-            </h1>
-          </div>
-          <div className="flex flex-wrap -m-4 justify-center ">
-            <div className="p-4 lg:w-1/3 md:w-1/2">
-              <div className="h-full flex flex-col items-center text-center">
-                <img
-                  alt="team"
-                  className="flex-shrink-0 rounded-lg w-2/4 object-cover object-center mb-4"
-                  src="/images/team/istiak.png"
-                />
-                <div className="w-full">
-                  <h2 className="title-font font-medium  text-xl md:text-2xl  text-white">
-                    Istiak Ahmed
-                  </h2>
-                  <h3 className="text-gray-300 text-base">Team Lead</h3>
-                  <h3 className="text-gray-300 mb-3 text-base">
-                    Full Stack Developer
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2">
-              <div className="h-full flex flex-col items-center text-center">
-                <img
-                  alt="team"
-                  className="flex-shrink-0 rounded-lg w-2/4  object-cover object-center mb-4"
-                  src="/images/team/mushfiq.png"
-                />
-                <div className="w-full">
-                  <h2 className="title-font font-medium  text-xl md:text-2xl  text-white">
-                    Mushfiqur Rashid{" "}
-                  </h2>
-                  <h3 className="text-gray-300 mb-3 text-base">
-                    Full Stack Developer
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2">
-              <div className="h-full flex flex-col items-center text-center">
-                <img
-                  alt="team"
-                  className="flex-shrink-0 rounded-lg w-2/4  object-cover object-center mb-4"
-                  src="/images/team/sajjad.png"
-                />
-                <div className="w-full">
-                  <h2 className="title-font font-medium  text-xl md:text-2xl  text-white">
-                    Md Sajjad Mahmud Khan{" "}
-                  </h2>
-                  <h3 className="text-gray-300 mb-3 text-base">
-                    Full Stack Developer
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2">
-              <div className="h-full flex flex-col items-center text-center">
-                <img
-                  alt="team"
-                  className="flex-shrink-0 rounded-lg w-2/4  object-cover object-center mb-4"
-                  src="/images/team/siwom.png"
-                />
-                <div className="w-full">
-                  <h2 className="title-font font-medium  text-xl md:text-2xl  text-white">
-                    Md Siwom Chowdhury
-                  </h2>
-                  <h3 className="text-gray-300 mb-3 text-base">
-                    UI/UX Designer
-                  </h3>
-                </div>
-              </div>
-            </div>
-            <div className="p-4 lg:w-1/3 md:w-1/2">
-              <div className="h-full flex flex-col items-center text-center">
-                <img
-                  alt="team"
-                  className="flex-shrink-0 rounded-lg w-2/4 object-cover object-center mb-4"
-                  src="/images/team/elma.png"
-                />
-                <div className="w-full">
-                  <h2 className="title-font font-medium  text-xl md:text-2xl  text-white">
-                    Fatema Tabassum Elma
-                  </h2>
-                  <h3 className="text-gray-300 mb-3 text-base">
-                    Business Analyst
-                  </h3>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section className="py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+            Our Team
+          </h2>
+          <div className="section-divider-center" />
+          <p className="text-white/60 text-base max-w-lg mx-auto mt-4">
+            The passionate minds behind Marine Marvels, united by a love for
+            ocean science and technology.
+          </p>
         </div>
-      </section>
-    </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8 justify-items-center">
+          {teamData.map((member, index) => (
+            <motion.div
+              key={member.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="group text-center"
+            >
+              <div className="relative w-36 h-36 mx-auto mb-4 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-ocean-500/50 transition-all duration-500">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ocean-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              <h3 className="text-white font-semibold text-base mb-1">
+                {member.name}
+              </h3>
+              {member.role && (
+                <span className="inline-block text-xs font-semibold text-ocean-primary bg-ocean-primary/10 px-3 py-1 rounded-full mb-1">
+                  {member.role}
+                </span>
+              )}
+              <p className="text-white/50 text-sm">{member.title}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 

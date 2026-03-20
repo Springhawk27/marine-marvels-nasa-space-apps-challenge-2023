@@ -1,13 +1,8 @@
 import RootLayout from "@/components/Layouts/RootLayout";
-import Learn from "@/components/UI/learn";
-import React from "react";
+import LearnList from "@/components/UI/learnlist";
 
 const LearnPage = () => {
-  return (
-    <div>
-      <Learn></Learn>
-    </div>
-  );
+  return <LearnList />;
 };
 
 export default LearnPage;
