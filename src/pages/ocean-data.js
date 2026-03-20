@@ -149,25 +149,40 @@ function OceanDataPage() {
 
       <div className="min-h-screen bg-gradient-abyss">
         {/* Hero */}
-        <section className="relative pt-28 pb-16 px-4 md:px-12">
-          <div className="max-w-5xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="text-ocean-primary text-sm font-semibold uppercase tracking-widest">
+        <section className="relative pt-28 pb-16 px-4 md:px-12 overflow-hidden">
+          {/* Bubbles */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + ((i * 67) % 80)}%`,
+                  bottom: `-10px`,
+                  width: `${3 + (i % 4) * 1.5}px`,
+                  height: `${3 + (i % 4) * 1.5}px`,
+                  background: `radial-gradient(circle, rgba(186,224,227,${0.15 + (i % 3) * 0.08}), transparent)`,
+                }}
+                animate={{ y: [0, -(400 + (i * 80) % 300)], opacity: [0, 0.5, 0] }}
+                transition={{ duration: 5 + (i % 3) * 2, repeat: Infinity, delay: i * 0.7, ease: "easeOut" }}
+              />
+            ))}
+          </div>
+
+          <div className="max-w-5xl mx-auto text-center relative z-10">
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <span className="inline-block text-ocean-primary text-xs font-semibold uppercase tracking-[0.2em] border border-ocean-primary/20 rounded-full px-4 py-1.5 bg-ocean-primary/5 backdrop-blur-sm mb-4">
                 Data & Resources
               </span>
-              <h1 className="text-5xl md:text-7xl font-display font-bold mt-3 mb-6">
-                <span className="gradient-text">Ocean</span>{" "}
-                <span className="text-white">Dashboard</span>
-              </h1>
-              <p className="text-white/60 text-lg max-w-xl mx-auto leading-relaxed">
-                Visualize key ocean metrics and explore NASA resources for
-                real-time marine and climate data.
-              </p>
             </motion.div>
+            <motion.h1 initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.6 }} className="text-5xl md:text-7xl font-display font-bold mb-6">
+              <span className="gradient-text">Ocean</span>{" "}
+              <span className="text-white">Dashboard</span>
+            </motion.h1>
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.6 }} className="text-white/50 text-lg max-w-xl mx-auto leading-relaxed">
+              Visualize key ocean metrics and explore NASA resources for
+              real-time marine and climate data.
+            </motion.p>
           </div>
         </section>
 

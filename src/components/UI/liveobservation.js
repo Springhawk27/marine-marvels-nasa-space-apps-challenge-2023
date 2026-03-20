@@ -51,24 +51,49 @@ export default function LiveObservation({ nasaData, isLoading }) {
 
       <div className="min-h-screen bg-gradient-ocean">
         {/* Hero */}
-        <section className="relative pt-28 pb-10 px-4 md:px-12">
-          <div className="max-w-3xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <span className="text-biolum-300 text-sm font-semibold uppercase tracking-widest">
+        <section className="relative pt-28 pb-10 px-4 md:px-12 overflow-hidden">
+          {/* Bubbles */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute rounded-full"
+                style={{
+                  left: `${10 + ((i * 71) % 80)}%`,
+                  bottom: `-10px`,
+                  width: `${2 + (i % 4) * 1.5}px`,
+                  height: `${2 + (i % 4) * 1.5}px`,
+                  background: `radial-gradient(circle, rgba(205,167,255,${0.12 + (i % 3) * 0.08}), transparent)`,
+                }}
+                animate={{ y: [0, -(400 + (i * 100) % 300)], opacity: [0, 0.4, 0] }}
+                transition={{ duration: 6 + (i % 3) * 2, repeat: Infinity, delay: i * 0.8, ease: "easeOut" }}
+              />
+            ))}
+          </div>
+
+          <div className="max-w-3xl mx-auto text-center relative z-10">
+            <motion.div initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+              <span className="inline-block text-biolum-300 text-xs font-semibold uppercase tracking-[0.2em] border border-biolum-300/20 rounded-full px-4 py-1.5 bg-biolum-300/5 backdrop-blur-sm mb-4">
                 NASA Satellite Imagery
               </span>
-              <h1 className="text-5xl md:text-7xl font-display font-bold mt-3 mb-4">
-                <span className="gradient-text-biolum">Live</span>{" "}
-                <span className="text-white">Observation</span>
-              </h1>
-              <p className="text-white/70 text-base max-w-lg mx-auto leading-relaxed">
-                Real-time ocean imagery from NASA&apos;s Image and Video Library.
-              </p>
             </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+              className="text-5xl md:text-7xl font-display font-bold mb-4"
+            >
+              <span className="gradient-text-biolum">Live</span>{" "}
+              <span className="text-white">Observation</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-white/60 text-base max-w-lg mx-auto leading-relaxed"
+            >
+              Real-time ocean imagery from NASA&apos;s Image and Video Library.
+            </motion.p>
           </div>
         </section>
 
@@ -261,7 +286,12 @@ export default function LiveObservation({ nasaData, isLoading }) {
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Satellite Facts */}
-              <div className="glass-card p-5">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="glass-card p-5">
                 <h3 className="text-white font-semibold text-sm mb-3">
                   Satellite Facts
                 </h3>
@@ -273,9 +303,15 @@ export default function LiveObservation({ nasaData, isLoading }) {
                     </p>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Dashboard link */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
               <Link href="/ocean-data" className="glass-card p-5 no-underline group block">
                 <div className="w-10 h-10 rounded-lg bg-ocean-primary/10 flex items-center justify-center text-ocean-primary mb-3">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -289,9 +325,15 @@ export default function LiveObservation({ nasaData, isLoading }) {
                   Explore ocean climate charts, depth comparisons, and NASA research resources.
                 </p>
               </Link>
+              </motion.div>
 
               {/* About the data */}
-              <div className="glass-card p-5">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="glass-card p-5">
                 <h3 className="text-white font-semibold text-sm mb-3">
                   About This Data
                 </h3>
@@ -309,7 +351,7 @@ export default function LiveObservation({ nasaData, isLoading }) {
                     <path d="M7 17L17 7M17 7H7M17 7v10" />
                   </svg>
                 </a>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
