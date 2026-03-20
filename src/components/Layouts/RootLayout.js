@@ -12,7 +12,8 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "Explore", href: "/explore" },
   { label: "Learn", href: "/learn" },
-  { label: "Game", href: "/game" },
+  { label: "Games", href: "/game" },
+  { label: "Ocean Data", href: "/ocean-data" },
   { label: "Live Observation", href: "/liveobservation" },
 ];
 

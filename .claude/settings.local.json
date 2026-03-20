@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(find /d/mahmud/Github/marine-marvels-nasa-space-apps-challenge-2023-main/marine-marvels-nasa-space-apps-challenge-2023 -not -path */node_modules/* -not -path */.git/* -type d)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
