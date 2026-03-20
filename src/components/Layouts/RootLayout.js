@@ -11,10 +11,11 @@ import { motion, AnimatePresence } from "framer-motion";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Explore", href: "/explore" },
+  { label: "Aquarium", href: "/aquarium" },
   { label: "Learn", href: "/learn" },
   { label: "Games", href: "/game" },
   { label: "Ocean Data", href: "/ocean-data" },
-  { label: "Live Observation", href: "/liveobservation" },
+  { label: "Live", href: "/liveobservation" },
 ];
 
 const RootLayout = ({ children }) => {

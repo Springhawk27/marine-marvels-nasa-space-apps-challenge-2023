@@ -68,7 +68,7 @@ export default function LearnList() {
         </section>
 
         {/* Articles Grid */}
-        <section className="px-4 md:px-12 pb-24">
+        <section className="px-4 md:px-12 pt-10 pb-24">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {articles.map((article, index) => (
