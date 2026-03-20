@@ -2,6 +2,7 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Head from "next/head";
+import UnderwaterCursor from "./UnderwaterCursor";
 
 const zones = [
   {
@@ -339,7 +340,8 @@ export default function ExploreShowcase() {
         />
       </Head>
 
-      <div ref={containerRef} className="min-h-screen relative">
+      <div ref={containerRef} className="min-h-screen relative explore-cursor-area">
+        <UnderwaterCursor />
         <DepthMeter containerRef={containerRef} />
 
         {/* Hero */}
@@ -564,6 +566,100 @@ export default function ExploreShowcase() {
             )}
           </section>
         ))}
+
+        {/* Deep Sea Landmarks - neal.fun style */}
+        <section
+          className="relative py-8 overflow-hidden"
+          style={{
+            background: "linear-gradient(180deg, #010812 0%, #000510 50%, #010812 100%)",
+          }}
+        >
+          <BubbleField count={3} intensity={0.15} />
+          <div className="max-w-3xl mx-auto px-4 md:px-12 relative z-10">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <span className="text-white/20 text-xs uppercase tracking-widest">
+                Notable Depths
+              </span>
+              <h2 className="text-2xl md:text-3xl font-display font-bold text-white/60 mt-2">
+                How Deep Does It Go?
+              </h2>
+            </motion.div>
+
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-ocean-primary/20 via-biolum-400/10 to-coral-500/20 -translate-x-1/2" />
+
+              {[
+                { depth: "40m", label: "Recreational Scuba Limit", icon: "person", color: "#4ECDC4", desc: "Maximum safe depth for recreational divers" },
+                { depth: "100m", label: "Blue Whale Dive Depth", icon: "whale", color: "#4ECDC4", desc: "How deep the largest animal on Earth dives to feed" },
+                { depth: "214m", label: "Deepest Freedive", icon: "trophy", color: "#4ECDC4", desc: "Herbert Nitsch's no-limit freediving record (2012)" },
+                { depth: "332m", label: "Deepest Scuba Dive", icon: "record", color: "#6C5CE7", desc: "Ahmed Gabr's world record scuba dive (2014)" },
+                { depth: "500m", label: "Giant Squid Territory", icon: "squid", color: "#6C5CE7", desc: "Where the mysterious giant squid hunts in darkness" },
+                { depth: "1,000m", label: "Midnight Zone Begins", icon: "moon", color: "#6C5CE7", desc: "Zero sunlight. Total darkness from here on" },
+                { depth: "2,250m", label: "Black Smokers", icon: "volcano", color: "#FD79A8", desc: "Hydrothermal vents reaching 400°C support unique life" },
+                { depth: "3,800m", label: "RMS Titanic", icon: "ship", color: "#FD79A8", desc: "Wreck of the famous ship, discovered in 1985" },
+                { depth: "8,376m", label: "Deepest Fish", icon: "fish", color: "#FD79A8", desc: "Pseudoliparis snailfish, filmed in 2022" },
+                { depth: "10,935m", label: "Challenger Deep", icon: "flag", color: "#FD79A8", desc: "The absolute deepest point in the ocean" },
+              ].map((landmark, i) => (
+                <motion.div
+                  key={landmark.depth}
+                  initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  className={`relative flex items-center gap-6 mb-8 ${
+                    i % 2 === 0 ? "flex-row" : "flex-row-reverse"
+                  }`}
+                >
+                  {/* Content */}
+                  <div className={`flex-1 ${i % 2 === 0 ? "text-right" : "text-left"}`}>
+                    <span
+                      className="text-xs font-mono font-bold"
+                      style={{ color: landmark.color }}
+                    >
+                      {landmark.depth}
+                    </span>
+                    <h4 className="text-white/80 text-sm font-semibold mt-0.5">
+                      {landmark.label}
+                    </h4>
+                    <p className="text-white/30 text-xs mt-0.5 leading-relaxed">
+                      {landmark.desc}
+                    </p>
+                  </div>
+
+                  {/* Center dot */}
+                  <div className="relative z-10 flex-shrink-0">
+                    <motion.div
+                      className="w-3 h-3 rounded-full border-2"
+                      style={{
+                        borderColor: landmark.color,
+                        backgroundColor: `${landmark.color}30`,
+                      }}
+                      whileInView={{
+                        scale: [1, 1.4, 1],
+                        boxShadow: [
+                          `0 0 0 0 ${landmark.color}00`,
+                          `0 0 0 6px ${landmark.color}20`,
+                          `0 0 0 0 ${landmark.color}00`,
+                        ],
+                      }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 1.5, delay: i * 0.08 }}
+                    />
+                  </div>
+
+                  {/* Spacer */}
+                  <div className="flex-1" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Deep sea reference */}
         <section

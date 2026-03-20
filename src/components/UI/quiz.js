@@ -1,8 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
 import { quizzes, quizTopics } from "@/data/quizData";
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function Quiz({ topicId }) {
   const topic = quizTopics.find((t) => t.id === topicId) || quizTopics[0];
@@ -14,6 +23,11 @@ function Quiz({ topicId }) {
   const [showResult, setShowResult] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [shuffleSeed, setShuffleSeed] = useState(0);
+
+  const shuffledOptions = useMemo(() => {
+    return shuffleArray(quizData[currentQuestion]?.options || []);
+  }, [currentQuestion, quizData, shuffleSeed]);
 
   const progress = ((currentQuestion + 1) / quizData.length) * 100;
 
@@ -54,6 +68,7 @@ function Quiz({ topicId }) {
     setShowResult(false);
     setIsFinished(false);
     setAnswers([]);
+    setShuffleSeed((s) => s + 1);
   };
 
   const scorePercentage = Math.round((score / quizData.length) * 100);
@@ -259,7 +274,7 @@ function Quiz({ topicId }) {
 
               {/* Options */}
               <div className="space-y-3">
-                {quizData[currentQuestion].options.map((option, index) => {
+                {shuffledOptions.map((option, index) => {
                   let optionClass = "quiz-option";
                   if (showResult && selectedAnswer) {
                     if (option === quizData[currentQuestion].correctAnswer) {

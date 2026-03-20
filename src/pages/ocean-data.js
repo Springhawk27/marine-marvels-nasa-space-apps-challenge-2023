@@ -86,6 +86,7 @@ const nasaResources = [
 
 function BarChart({ data, color, unit, label }) {
   const maxVal = Math.max(...data.map((d) => d.value));
+  const chartHeight = 160;
 
   return (
     <motion.div
@@ -95,30 +96,40 @@ function BarChart({ data, color, unit, label }) {
       className="glass-card p-6"
     >
       <h3 className="text-white font-semibold text-base mb-1">{label}</h3>
-      <p className="text-white/40 text-xs mb-6">Source: NASA / NOAA</p>
-      <div className="flex items-end gap-2 h-40">
-        {data.map((d, i) => (
-          <div key={d.year} className="flex-1 flex flex-col items-center gap-1">
-            <motion.div
-              className="w-full rounded-t-md"
-              style={{ backgroundColor: color }}
-              initial={{ height: 0 }}
-              whileInView={{ height: `${(d.value / maxVal) * 100}%` }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-            />
-            <span className="text-white/30 text-[9px]">{d.year}</span>
-          </div>
-        ))}
+      <p className="text-white/40 text-xs mb-4">Source: NASA / NOAA</p>
+      <div className="flex items-end gap-2" style={{ height: chartHeight + 24 }}>
+        {data.map((d, i) => {
+          const barHeight = maxVal > 0 ? Math.max((d.value / maxVal) * chartHeight, 4) : 4;
+          return (
+            <div key={d.year} className="flex-1 flex flex-col items-center justify-end" style={{ height: chartHeight + 24 }}>
+              <motion.div
+                className="relative w-full rounded-t-md group cursor-default"
+                style={{ backgroundColor: color, minWidth: 12 }}
+                initial={{ height: 0 }}
+                whileInView={{ height: barHeight }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12, duration: 0.7, ease: "easeOut" }}
+              >
+                <div className="absolute -top-7 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  <span className="text-white text-[10px] font-semibold bg-deep-900/90 px-2 py-0.5 rounded">
+                    {d.value}{unit}
+                  </span>
+                </div>
+              </motion.div>
+              <span className="text-white/40 text-[9px] mt-2 leading-none">{d.year}</span>
+            </div>
+          );
+        })}
       </div>
-      <div className="flex justify-between mt-3 text-white/30 text-[10px]">
-        <span>
-          {data[0].value}
-          {unit}
+      <div className="flex justify-between mt-4 pt-3 border-t border-white/5">
+        <span className="text-white/30 text-[10px]">
+          {data[0].year}: {data[0].value}{unit}
         </span>
-        <span className="font-semibold" style={{ color }}>
-          {data[data.length - 1].value}
-          {unit}
+        <span className="text-xs font-semibold" style={{ color }}>
+          {data[data.length - 1].year}: {data[data.length - 1].value}{unit}
+          <span className="text-white/30 font-normal ml-1">
+            (+{(((data[data.length - 1].value - data[0].value) / Math.max(data[0].value, 0.01)) * 100).toFixed(0)}%)
+          </span>
         </span>
       </div>
     </motion.div>
