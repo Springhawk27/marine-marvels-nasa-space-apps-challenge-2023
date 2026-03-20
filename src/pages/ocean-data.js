@@ -222,7 +222,7 @@ function OceanDataPage() {
               <BarChart
                 data={oceanData.temperature}
                 color="#FD79A8"
-                unit="°C"
+                unit=" °C"
                 label="Ocean Temperature Anomaly"
               />
               <BarChart

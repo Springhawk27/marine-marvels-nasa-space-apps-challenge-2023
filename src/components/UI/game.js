@@ -121,7 +121,7 @@ export default function Game() {
               <h2 className="text-white/30 text-xs font-semibold uppercase tracking-widest mb-6 text-center">
                 More Games
               </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {/* Memory Game */}
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -184,6 +184,36 @@ export default function Game() {
                         Unscramble marine species names and ocean terms. Use hints wisely!
                       </p>
                       <span className="ocean-btn ocean-btn-secondary text-sm">Play</span>
+                    </div>
+                  </Link>
+                </motion.div>
+
+                {/* Species ID */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <Link href="/species-id" className="block no-underline h-full">
+                    <div className="glass-card p-6 group h-full">
+                      <div className="flex gap-2 mb-4">
+                        {["?", "?", "?"].map((q, i) => (
+                          <motion.span key={i}
+                            className="w-8 h-8 flex items-center justify-center text-sm font-display font-bold text-coral-400 rounded-full border border-coral-400/20 bg-coral-400/5"
+                            animate={{ scale: [1, 1.15, 1] }}
+                            transition={{ duration: 2, delay: i * 0.4, repeat: Infinity }}>
+                            {q}
+                          </motion.span>
+                        ))}
+                      </div>
+                      <h3 className="text-white font-display text-xl font-bold mb-2 group-hover:text-seafoam-300 transition-colors">
+                        Guess the Species
+                      </h3>
+                      <p className="text-white/40 text-sm mb-4">
+                        Read clues and identify marine creatures. Includes an encyclopedia to study.
+                      </p>
+                      <span className="ocean-btn ocean-btn-primary text-sm">Play</span>
                     </div>
                   </Link>
                 </motion.div>

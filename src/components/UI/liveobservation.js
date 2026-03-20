@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import Link from "next/link";
@@ -23,17 +23,21 @@ export default function LiveObservation({ nasaData, isLoading }) {
   const [searchTerm, setSearchTerm] = useState("");
   const sidebarRef = useRef(null);
 
-  const items = nasaData?.collection?.items || [];
+  const items = nasaData?.collection?.items;
 
-  if (!selectedCard && items.length > 0) {
-    setSelectedCard(items[0]);
-  }
+  useEffect(() => {
+    if (!selectedCard && items && items.length > 0) {
+      setSelectedCard(items[0]);
+    }
+  }, [items, selectedCard]);
+
+  const filteredList = items || [];
 
   const filteredItems = searchTerm
-    ? items.filter((item) =>
+    ? filteredList.filter((item) =>
         item.data?.[0]?.title?.toLowerCase().includes(searchTerm.toLowerCase())
       )
-    : items;
+    : filteredList;
 
   const handleSelect = (item) => {
     setSelectedCard(item);
@@ -214,7 +218,7 @@ export default function LiveObservation({ nasaData, isLoading }) {
                     {filteredItems.length} Images
                   </h3>
 
-                  {isLoading || items.length === 0 ? (
+                  {isLoading || filteredList.length === 0 ? (
                     <div className="space-y-3">
                       {[...Array(6)].map((_, i) => (
                         <div key={i} className="flex gap-3">

@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 const slides = [
   {
     image: "/images/carousel/image1.png",
-    title: "View Ocean as Garden",
+    title: "The Ocean's Garden",
     subtitle:
-      "Discover the ocean's hidden beauty and vital services. It is a life-sustaining garden, providing oxygen, combating CO2, and fueling our world.",
+      "Discover the ocean's hidden beauty and vital services — a life-sustaining garden that provides oxygen, combats CO2, and fuels our world.",
     cta: null,
   },
   {

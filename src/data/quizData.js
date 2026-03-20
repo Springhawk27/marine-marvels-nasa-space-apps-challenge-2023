@@ -78,7 +78,7 @@ export const quizzes = {
     {
       id: 9,
       question: "Which ocean zone has the greatest abundance of phytoplankton?",
-      options: ["Euphotic zone", "Abyssal zone", "Hadal zone", "Disphotic zone"],
+      options: ["Euphotic zone", "Abyssal zone", "Hadal zone", "Dysphotic zone"],
       correctAnswer: "Euphotic zone",
     },
     {

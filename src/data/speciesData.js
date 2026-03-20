@@ -1,0 +1,148 @@
+const speciesData = [
+  {
+    id: 1, name: "Blue Whale", category: "Mammal", zone: "Euphotic",
+    image: "/images/explore/jelly_fish.png",
+    clues: [
+      "I am the largest animal to have ever lived on Earth",
+      "My heart is the size of a small car",
+      "I can grow up to 30 meters long and weigh 200 tonnes",
+      "My tongue alone can weigh as much as an elephant",
+    ],
+    facts: "Blue whales are the largest animals known to have ever existed. Their hearts weigh around 400 kg and beat so loudly they can be detected from 3 km away. Despite their enormous size, they feed almost exclusively on tiny krill, consuming up to 4 tonnes per day.",
+    difficulty: "easy",
+  },
+  {
+    id: 2, name: "Octopus", category: "Cephalopod", zone: "Dysphotic",
+    image: "/images/explore/octopus.png",
+    clues: [
+      "I have three hearts and blue blood",
+      "I can change color and texture in milliseconds",
+      "I am considered the most intelligent invertebrate",
+      "I have eight arms, each with its own 'mini brain'",
+    ],
+    facts: "Octopuses have 500 million neurons — comparable to a dog. Two-thirds of their neurons reside in their arms, allowing each arm to act semi-independently. They can solve mazes, open jars, and even use coconut shells as portable shelters.",
+    difficulty: "easy",
+  },
+  {
+    id: 3, name: "Anglerfish", category: "Fish", zone: "Aphotic",
+    image: "/images/explore/angler_fish.png",
+    clues: [
+      "I live in complete darkness below 1,000 meters",
+      "I use a glowing lure on my head to attract prey",
+      "The male of my species permanently fuses to the female",
+      "My mouth and stomach can expand to swallow prey twice my size",
+    ],
+    facts: "Deep-sea anglerfish are among the most bizarre creatures on Earth. The male is tiny — sometimes just a few centimeters — and when he finds a female, he bites into her skin and permanently fuses, sharing her bloodstream for nutrients. The bioluminescent lure (esca) contains light-producing bacteria.",
+    difficulty: "medium",
+  },
+  {
+    id: 4, name: "Sea Turtle", category: "Reptile", zone: "Euphotic",
+    image: "/images/explore/shrimp.png",
+    clues: [
+      "I have been on Earth for over 100 million years",
+      "I return to the exact beach where I was born to lay eggs",
+      "I navigate using Earth's magnetic field",
+      "I can hold my breath for up to 7 hours while sleeping",
+    ],
+    facts: "Sea turtles are ancient reptiles that have survived mass extinctions. They use the Earth's magnetic field like an internal GPS to navigate thousands of kilometers across oceans. Sadly, 6 of 7 species are now threatened, mainly due to plastic pollution and habitat loss.",
+    difficulty: "easy",
+  },
+  {
+    id: 5, name: "Narwhal", category: "Mammal", zone: "Euphotic",
+    image: "/images/explore/sword_fish.png",
+    clues: [
+      "I am called the 'unicorn of the sea'",
+      "My tusk is actually a giant tooth that can grow up to 3 meters",
+      "I live in Arctic waters year-round",
+      "My tusk has millions of nerve endings that sense the environment",
+    ],
+    facts: "The narwhal's tusk is a left upper canine tooth that grows in a counter-clockwise spiral. Recent research revealed it contains up to 10 million nerve endings, potentially sensing water temperature, pressure, and salinity. About 1 in 500 males grow two tusks.",
+    difficulty: "medium",
+  },
+  {
+    id: 6, name: "Jellyfish", category: "Cnidarian", zone: "Euphotic",
+    image: "/images/explore/jelly_fish.png",
+    clues: [
+      "I have no brain, heart, bones, or blood",
+      "I have existed for over 500 million years — older than dinosaurs",
+      "Some of my species are immortal — they can reverse aging",
+      "I am 95% water",
+    ],
+    facts: "Turritopsis dohrnii, the 'immortal jellyfish,' can revert to its juvenile polyp stage when stressed, theoretically living forever. Box jellyfish have 24 eyes and venom potent enough to kill a human in minutes. Despite no central brain, they can learn from experience.",
+    difficulty: "easy",
+  },
+  {
+    id: 7, name: "Giant Squid", category: "Cephalopod", zone: "Dysphotic",
+    image: "/images/explore/octopus.png",
+    clues: [
+      "I have the largest eyes in the animal kingdom — up to 27 cm across",
+      "I was not photographed alive until 2004",
+      "I can grow up to 13 meters long",
+      "I am the prey of sperm whales in legendary deep-sea battles",
+    ],
+    facts: "Giant squid remained a mystery for centuries, inspiring legends of the Kraken. Their eyes — the size of dinner plates — evolved to detect the faint bioluminescence of approaching sperm whales in the dark ocean. They have a donut-shaped brain with their esophagus passing through the center.",
+    difficulty: "medium",
+  },
+  {
+    id: 8, name: "Seahorse", category: "Fish", zone: "Euphotic",
+    image: "/images/explore/phytoplankton.png",
+    clues: [
+      "I am the only animal where the male becomes pregnant",
+      "I mate for life and greet my partner every morning with a dance",
+      "I have no stomach — food passes through me very quickly",
+      "I can move each eye independently, like a chameleon",
+    ],
+    facts: "Male seahorses carry up to 2,000 fertilized eggs in a specialized brood pouch for 2-4 weeks. Pairs perform daily greeting dances, changing colors and swimming side by side. They are poor swimmers and can die of exhaustion in strong currents, which is why they anchor to seagrass with their tails.",
+    difficulty: "easy",
+  },
+  {
+    id: 9, name: "Mantis Shrimp", category: "Crustacean", zone: "Euphotic",
+    image: "/images/explore/shrimp.png",
+    clues: [
+      "I can punch with the force of a bullet — 1,500 Newtons",
+      "I see 16 types of color receptors (humans have 3)",
+      "My strike is the fastest movement in the animal kingdom",
+      "I can break aquarium glass with my claws",
+    ],
+    facts: "Mantis shrimp strikes accelerate at 10,000g — so fast they boil the water around their claws (cavitation). Their eyes can see ultraviolet and infrared light, plus circular polarized light no other animal can detect. They are solitary and fiercely territorial, which is why aquariums rarely display them.",
+    difficulty: "hard",
+  },
+  {
+    id: 10, name: "Dolphin", category: "Mammal", zone: "Euphotic",
+    image: "/images/explore/jelly_fish.png",
+    clues: [
+      "I sleep with one half of my brain at a time",
+      "I use echolocation to 'see' with sound",
+      "I can recognize myself in a mirror",
+      "I have been observed giving each other unique names (signature whistles)",
+    ],
+    facts: "Dolphins have distinct 'signature whistles' — essentially names — that they use to call specific individuals. They sleep uni-hemispherically, keeping one eye open to watch for predators. They have been documented cooperating with human fishers, herding fish toward nets and eating the ones that escape.",
+    difficulty: "easy",
+  },
+  {
+    id: 11, name: "Hammerhead Shark", category: "Fish", zone: "Euphotic",
+    image: "/images/explore/sword_fish.png",
+    clues: [
+      "My head is shaped like a wide, flat hammer",
+      "My wide head gives me 360-degree vision",
+      "I can detect electrical fields from prey hidden in sand",
+      "I swim in large schools of up to 500 during the day",
+    ],
+    facts: "The hammerhead's cephalofoil (head shape) serves multiple purposes: it provides superior binocular vision, enhances electroreception range for detecting buried prey, and improves hydrodynamic maneuverability. Some species form massive schools by day for protection, then hunt solo at night.",
+    difficulty: "medium",
+  },
+  {
+    id: 12, name: "Coral", category: "Cnidarian", zone: "Euphotic",
+    image: "/images/explore/phytoplankton.png",
+    clues: [
+      "I am not a plant — I am actually an animal",
+      "I build structures visible from space (the Great Barrier Reef)",
+      "I get my color from tiny algae living inside me",
+      "I support 25% of all marine species despite covering less than 1% of the ocean",
+    ],
+    facts: "Corals are colonial animals made of thousands of tiny polyps. They form a symbiotic relationship with zooxanthellae algae, which provide up to 90% of the coral's energy through photosynthesis. When stressed by heat, corals expel these algae, causing bleaching. The Great Barrier Reef is the largest living structure on Earth.",
+    difficulty: "medium",
+  },
+];
+
+export default speciesData;

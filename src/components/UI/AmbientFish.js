@@ -49,6 +49,8 @@ function SmallFish({ fish, goRight, yPos, speed, delay }) {
 
 export default function AmbientFish({ count = 3, yRange = [10, 90] }) {
   const [fishes, setFishes] = useState([]);
+  const yMin = yRange[0];
+  const yMax = yRange[1];
 
   useEffect(() => {
     const arr = [];
@@ -58,13 +60,13 @@ export default function AmbientFish({ count = 3, yRange = [10, 90] }) {
         ...fish,
         id: i,
         goRight: i % 2 === 0,
-        yPos: yRange[0] + Math.random() * (yRange[1] - yRange[0]),
+        yPos: yMin + Math.random() * (yMax - yMin),
         speed: 18 + Math.random() * 20,
         delay: i * 3 + Math.random() * 5,
       });
     }
     setFishes(arr);
-  }, [count, yRange[0], yRange[1]]);
+  }, [count, yMin, yMax]);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-[1]">
