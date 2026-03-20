@@ -23,6 +23,17 @@ const HomePage = () => {
       <main className="bg-gradient-abyss min-h-screen">
         {/* Hero Section */}
         <section className="relative pt-20 pb-8 px-4 md:px-12">
+          {/* Background image */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/images/home_background.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              opacity: 0.12,
+            }}
+          />
           {/* Animated background particles */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {[...Array(6)].map((_, i) => (
@@ -154,7 +165,16 @@ const HomePage = () => {
 
         {/* Video Section */}
         <section className="py-20 px-4 md:px-12 relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-deep-900/50 to-transparent" />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/images/video_section.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: 0.15,
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-deep-900 via-deep-900/80 to-deep-900" />
           <div className="max-w-5xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

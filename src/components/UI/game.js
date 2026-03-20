@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import Head from "next/head";
+import { quizTopics } from "@/data/quizData";
 
 const funFacts = [
   "The ocean produces over 50% of the world's oxygen",
@@ -15,10 +16,10 @@ export default function Game() {
   return (
     <>
       <Head>
-        <title>Ocean Quiz Game | Marine Marvels</title>
+        <title>Ocean Games | Marine Marvels</title>
         <meta
           name="description"
-          content="Test your ocean knowledge with our interactive quiz game about phytoplankton and marine science."
+          content="Test your ocean knowledge with quizzes, memory games, and educational challenges."
         />
       </Head>
 
@@ -42,7 +43,7 @@ export default function Game() {
             ))}
           </div>
 
-          <div className="max-w-4xl mx-auto relative z-10">
+          <div className="max-w-5xl mx-auto relative z-10">
             {/* Hero */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -58,55 +59,119 @@ export default function Game() {
                 <br />
                 <span className="gradient-text-sunset">Playing</span>
               </h1>
-              <p className="text-white/60 text-lg max-w-lg mx-auto mb-8 leading-relaxed">
-                Test your knowledge about phytoplankton, ocean zones, and marine
-                ecosystems with our interactive quiz. Can you get a perfect
-                score?
+              <p className="text-white/60 text-lg max-w-lg mx-auto leading-relaxed">
+                Choose from quizzes, memory games, and more. Each game teaches
+                you something new about our incredible ocean.
               </p>
-              <Link
-                href="/quiz"
-                className="ocean-btn ocean-btn-secondary no-underline"
-              >
-                Start Quiz
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </Link>
             </motion.div>
 
-            {/* Quiz info cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-              {[
-                { label: "Questions", value: "10", icon: "?" },
-                { label: "Topic", value: "Phytoplankton", icon: "~" },
-                { label: "Difficulty", value: "Medium", icon: "!" },
-              ].map((info, index) => (
-                <motion.div
-                  key={info.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 + index * 0.1 }}
-                  className="glass-card p-6 text-center"
-                >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-full bg-sunset-400/10 flex items-center justify-center text-sunset-400 font-display text-xl font-bold">
-                    {info.icon}
-                  </div>
-                  <p className="text-white font-semibold text-lg">
-                    {info.value}
-                  </p>
-                  <p className="text-white/40 text-xs uppercase tracking-wider">
-                    {info.label}
-                  </p>
-                </motion.div>
-              ))}
+            {/* Quiz Topics */}
+            <div className="mb-16">
+              <h2 className="text-white/40 text-xs font-semibold uppercase tracking-widest mb-6 text-center">
+                Choose a Quiz Topic
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {quizTopics.map((topic, index) => (
+                  <motion.div
+                    key={topic.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.1 }}
+                  >
+                    <Link
+                      href={`/quiz?topic=${topic.id}`}
+                      className="block no-underline"
+                    >
+                      <div className="glass-card p-6 text-center group h-full">
+                        <div
+                          className="w-14 h-14 mx-auto mb-4 rounded-full flex items-center justify-center text-2xl font-display font-bold transition-transform duration-300 group-hover:scale-110"
+                          style={{
+                            backgroundColor: `${topic.color}15`,
+                            color: topic.color,
+                          }}
+                        >
+                          {topic.icon}
+                        </div>
+                        <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-seafoam-300 transition-colors">
+                          {topic.title}
+                        </h3>
+                        <p className="text-white/40 text-sm mb-3">
+                          {topic.description}
+                        </p>
+                        <span
+                          className="text-xs font-semibold px-3 py-1 rounded-full"
+                          style={{
+                            backgroundColor: `${topic.color}15`,
+                            color: topic.color,
+                          }}
+                        >
+                          {topic.questionCount} Questions
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
             </div>
+
+            {/* Memory Game */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-16"
+            >
+              <h2 className="text-white/40 text-xs font-semibold uppercase tracking-widest mb-6 text-center">
+                More Games
+              </h2>
+              <Link href="/memory-game" className="block no-underline">
+                <div className="glass-card p-8 md:p-10 flex flex-col md:flex-row items-center gap-8 group">
+                  <div className="flex-shrink-0 grid grid-cols-3 gap-2 w-24 md:w-32">
+                    {[...Array(9)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="aspect-square rounded-lg bg-deep-700/50 border border-white/5"
+                        animate={{
+                          borderColor:
+                            i % 3 === 0
+                              ? ["rgba(255,255,255,0.05)", "rgba(14,155,191,0.3)", "rgba(255,255,255,0.05)"]
+                              : "rgba(255,255,255,0.05)",
+                        }}
+                        transition={{
+                          duration: 2,
+                          delay: i * 0.3,
+                          repeat: Infinity,
+                        }}
+                      />
+                    ))}
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h3 className="text-white font-display text-2xl font-bold mb-2 group-hover:text-seafoam-300 transition-colors">
+                      Ocean Memory
+                    </h3>
+                    <p className="text-white/50 text-sm mb-4 max-w-md">
+                      Match pairs of marine creatures and discover fun facts
+                      about each one. Train your memory while learning about
+                      ocean life.
+                    </p>
+                    <span className="ocean-btn ocean-btn-primary text-sm">
+                      Play Now
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
 
             {/* Fun Facts */}
             <motion.div

@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Head from "next/head";
-import quizData from "@/data/quizData";
+import { quizzes, quizTopics } from "@/data/quizData";
 
-function Quiz() {
+function Quiz({ topicId }) {
+  const topic = quizTopics.find((t) => t.id === topicId) || quizTopics[0];
+  const quizData = quizzes[topicId] || quizzes.phytoplankton;
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -41,7 +44,7 @@ function Quiz() {
       } else {
         setIsFinished(true);
       }
-    }, 1500);
+    }, 1200);
   };
 
   const resetQuiz = () => {
@@ -69,8 +72,12 @@ function Quiz() {
             className="max-w-2xl mx-auto"
           >
             <div className="glass-card p-8 md:p-12 text-center mb-8">
+              {/* Score Ring */}
               <div className="relative w-32 h-32 mx-auto mb-6">
-                <svg className="w-full h-full -rotate-90" viewBox="0 0 120 120">
+                <svg
+                  className="w-full h-full -rotate-90"
+                  viewBox="0 0 120 120"
+                >
                   <circle
                     cx="60"
                     cy="60"
@@ -84,7 +91,13 @@ function Quiz() {
                     cy="60"
                     r="54"
                     fill="none"
-                    stroke={scorePercentage >= 70 ? "#BAE3C3" : scorePercentage >= 40 ? "#FFBF89" : "#FEB6C9"}
+                    stroke={
+                      scorePercentage >= 70
+                        ? "#BAE3C3"
+                        : scorePercentage >= 40
+                          ? "#FFBF89"
+                          : "#FEB6C9"
+                    }
                     strokeWidth="8"
                     strokeLinecap="round"
                     strokeDasharray={`${2 * Math.PI * 54}`}
@@ -110,6 +123,9 @@ function Quiz() {
                     ? "Good Try!"
                     : "Keep Learning!"}
               </h2>
+              <p className="text-white/60 text-base mb-2">
+                <span style={{ color: topic.color }}>{topic.title}</span> Quiz
+              </p>
               <p className="text-white/60 text-base mb-6">
                 You scored{" "}
                 <span className="text-white font-semibold">
@@ -125,10 +141,10 @@ function Quiz() {
                   Try Again
                 </button>
                 <Link
-                  href="/learn"
+                  href="/game"
                   className="ocean-btn ocean-btn-outline no-underline"
                 >
-                  Learn More
+                  More Games
                 </Link>
               </div>
             </div>
@@ -181,15 +197,31 @@ function Quiz() {
   return (
     <>
       <Head>
-        <title>Quiz - Phytoplankton | Marine Marvels</title>
+        <title>Quiz - {topic.title} | Marine Marvels</title>
       </Head>
       <div className="min-h-screen bg-gradient-ocean pt-24 pb-20 px-4 md:px-12">
         <div className="max-w-2xl mx-auto">
           {/* Header */}
           <div className="mb-8">
+            <Link
+              href="/game"
+              className="inline-flex items-center gap-2 text-white/40 hover:text-white text-sm no-underline mb-3 transition-colors"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+              Back to Games
+            </Link>
             <div className="flex justify-between items-center mb-3">
               <h1 className="text-2xl font-display font-bold text-white">
-                Phytoplankton Quiz
+                <span style={{ color: topic.color }}>{topic.title}</span> Quiz
               </h1>
               <span className="text-white/40 text-sm font-medium">
                 {currentQuestion + 1} / {quizData.length}
@@ -214,7 +246,10 @@ function Quiz() {
               transition={{ duration: 0.3 }}
             >
               <div className="glass-card p-8 mb-6">
-                <span className="text-ocean-primary text-xs font-semibold uppercase tracking-widest">
+                <span
+                  className="text-xs font-semibold uppercase tracking-widest"
+                  style={{ color: topic.color }}
+                >
                   Question {currentQuestion + 1}
                 </span>
                 <h2 className="text-xl md:text-2xl font-semibold text-white mt-2">
@@ -258,13 +293,13 @@ function Quiz() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Score indicator */}
+          {/* Score */}
           <div className="mt-8 flex justify-between items-center">
             <span className="text-white/30 text-sm">
               Score: {score} correct
             </span>
             <Link
-              href="/learn"
+              href="/game"
               className="text-white/30 hover:text-white/60 text-sm no-underline transition-colors"
             >
               Exit Quiz

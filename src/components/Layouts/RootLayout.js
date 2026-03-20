@@ -240,16 +240,38 @@ const RootLayout = ({ children }) => {
                   Resources
                 </h4>
                 <nav className="flex flex-col gap-2">
-                  <span className="text-white/50 text-sm">
+                  <a
+                    href="https://oceancolor.gsfc.nasa.gov/gallery/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-seafoam-300 text-sm no-underline transition-colors duration-200"
+                  >
                     NASA Ocean Color Gallery
-                  </span>
-                  <span className="text-white/50 text-sm">
+                  </a>
+                  <a
+                    href="https://science.nasa.gov/earth-science/oceanography/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-seafoam-300 text-sm no-underline transition-colors duration-200"
+                  >
                     NASA Oceanography Data
-                  </span>
-                  <span className="text-white/50 text-sm">
+                  </a>
+                  <a
+                    href="https://oceanservice.noaa.gov/facts/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-seafoam-300 text-sm no-underline transition-colors duration-200"
+                  >
                     NOAA Ocean Facts
-                  </span>
-                  <span className="text-white/50 text-sm">NASA EOSDIS API</span>
+                  </a>
+                  <a
+                    href="https://www.earthdata.nasa.gov/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/50 hover:text-seafoam-300 text-sm no-underline transition-colors duration-200"
+                  >
+                    NASA EOSDIS API
+                  </a>
                 </nav>
               </div>
             </div>

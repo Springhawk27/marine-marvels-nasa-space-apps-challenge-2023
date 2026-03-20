@@ -8,17 +8,17 @@ const team = [
   },
   {
     id: 2,
-    name: "Mushfiqur Rashid",
-    role: null,
-    title: "Full Stack Developer",
-    image: "/images/team/mushfiq.png",
-  },
-  {
-    id: 3,
     name: "Md Sajjad Mahmud Khan",
     role: null,
     title: "Full Stack Developer",
     image: "/images/team/sajjad.png",
+  },
+  {
+    id: 3,
+    name: "Mushfiqur Rashid",
+    role: null,
+    title: "Full Stack Developer",
+    image: "/images/team/mushfiq.png",
   },
   {
     id: 4,
